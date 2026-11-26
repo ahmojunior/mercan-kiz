@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercan Kız</title>
+<meta name="description" content="Mercan Kız masalı, on sahne ve yedi kişiyle, resimli olarak.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;0,800;1,400;1,800&family=Alegreya+Sans:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gece: #13204A;
+    --lacivert: #1E2F66;
+    --fildisi: #F3EAD8;
+    --soluk: #B9BCD3;
+    --mercan: #F06B5B;
+    --firuze: #48B7A8;
+    --altin: #D6B26E;
+    /* sivri (ogee) kemer: kahramanın penceresi ve kişilerin nişleri */
+    --kemer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 130' preserveAspectRatio='none'%3E%3Cpath d='M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--gece);
+    color: var(--fildisi);
+    font: 400 1.125rem/1.7 "Alegreya", Georgia, serif;
+  }
+  img { display: block; max-width: 100%; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 3px solid var(--altin); outline-offset: 4px; }
+
+  /* kemer: maske + aynı yolu çizen ince firuze çizgi */
+  .kemer { position: relative; aspect-ratio: 100 / 130; }
+  .kemer-ic { position: absolute; inset: 0; -webkit-mask: var(--kemer) center / 100% 100% no-repeat; mask: var(--kemer) center / 100% 100% no-repeat; }
+  .kemer-cizgi { position: absolute; inset: -7px; width: calc(100% + 14px); height: calc(100% + 14px); overflow: visible; pointer-events: none; }
+  .kemer-cizgi path { fill: none; stroke: var(--firuze); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+  /* Kapak */
+  .kapak {
+    min-height: 100svh;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    padding: 4rem 16px 3rem;
+    background: radial-gradient(60% 50% at 50% 42%, #2A3C78 0%, var(--gece) 70%);
+  }
+  .kapak .kemer { width: min(80vw, 54svh, 440px); }
+  .kapak .kemer-ic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+  .kapak h1 {
+    position: relative;
+    margin: -0.42em 0 0;
+    font: 800 clamp(4rem, 14vw, 9rem)/0.9 "Alegreya", Georgia, serif;
+    letter-spacing: -0.02em;
+    text-align: center;
+    text-shadow: 0 0.04em 0.3em rgba(0, 0, 0, 0.5);
+  }
+  .kapak p { margin: 1.25rem 0 0; color: var(--soluk); font-style: italic; text-align: center; }
+
+  .sutun { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  h2 {
+    margin: 0 0 2.5rem;
+    font: 800 clamp(2.25rem, 5vw, 3.5rem)/1.05 "Alegreya", Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Kişiler */
+  .kisiler { padding: clamp(4rem, 10vw, 7rem) 0; }
+  .kisi-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 3.5rem 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .kisi .kemer-ic { background: radial-gradient(90% 55% at 50% 100%, #33498F 0%, var(--lacivert) 70%); }
+  .kisi .kemer-ic img {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    max-width: 86%;
+    max-height: 84%;
+    transform: translateX(-50%);
+  }
+  .kisi h3 { margin: 1.1rem 0 0.2rem; font: 700 1.5rem/1.2 "Alegreya", Georgia, serif; }
+  .kisi p { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--soluk); }
+
+  /* Masal */
+  .masal { padding: clamp(4rem, 10vw, 7rem) 0 2rem; border-top: 1px solid rgba(214, 178, 110, 0.35); }
+  /* dikey film şeridi: iki yanda delikler, her kare resim + metin */
+  .sahneler {
+    --delik: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='30'%3E%3Crect y='5' width='14' height='20' rx='3' fill='%23F3EAD8' fill-opacity='.85'/%3E%3C/svg%3E");
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 18px 58px;
+    list-style: none;
+    border-radius: 12px;
+    background:
+      var(--delik) left 22px top 0 / 14px 30px repeat-y,
+      var(--delik) right 22px top 0 / 14px 30px repeat-y,
+      #080D26;
+  }
+  .sahne { position: relative; padding: 22px 22px 30px; background: #111B41; border-radius: 3px; }
+  .sahne + .sahne { margin-top: 18px; }
+  /* filmin kenarındaki kare numarası */
+  .sahne::before {
+    content: attr(data-no);
+    position: absolute;
+    top: 22px;
+    left: -19px;
+    writing-mode: vertical-rl;
+    font: 500 0.75rem/1 "Alegreya Sans", system-ui, sans-serif;
+    color: var(--altin);
+  }
+  .sahne img { width: 100%; height: auto; border-radius: 2px; }
+  .anlati {
+    display: grid;
+    grid-template-columns: 4.75rem minmax(0, 36em);
+    margin-top: 1.5rem;
+  }
+  .sira {
+    font: italic 800 3.75rem/0.9 "Alegreya", Georgia, serif;
+    color: var(--mercan);
+    font-variant-numeric: lining-nums;
+  }
+  .anlati p { margin: 0; font-size: clamp(1.1875rem, 2vw, 1.3125rem); line-height: 1.7; }
+  .deyim { text-decoration: underline 2px var(--mercan); text-underline-offset: 0.22em; text-decoration-skip-ink: auto; }
+  .sahne em { color: #F7D9A3; }
+
+  /* Üç elma */
+  .elmalar {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 8vw, 5rem);
+    margin: clamp(3rem, 8vw, 5rem) 0 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    padding-top: 1rem;
+  }
+  .elma { display: grid; justify-items: center; gap: 0.5rem; text-align: center; font-style: italic; color: var(--soluk); }
+  .elma svg { width: clamp(56px, 10vw, 84px); height: auto; }
+  .elmalar.bekle .elma svg { transform: translateY(-75vh); opacity: 0; }
+  .elmalar.bekle .elma span { opacity: 0; }
+  .elmalar.dustu .elma svg { animation: dus 1.1s cubic-bezier(0.3, 0, 0.6, 1) both; }
+  .elmalar.dustu .elma span { animation: belir 0.6s ease-out both; }
+  .elmalar.dustu .elma:nth-child(2) svg { animation-delay: 0.35s; }
+  .elmalar.dustu .elma:nth-child(3) svg { animation-delay: 0.7s; }
+  .elmalar.dustu .elma:nth-child(1) span { animation-delay: 1s; }
+  .elmalar.dustu .elma:nth-child(2) span { animation-delay: 1.35s; }
+  .elmalar.dustu .elma:nth-child(3) span { animation-delay: 1.7s; }
+  @keyframes dus {
+    0% { transform: translateY(-75vh) rotate(-25deg); opacity: 0; }
+    15% { opacity: 1; }
+    70% { transform: translateY(0) rotate(6deg); }
+    82% { transform: translateY(-14px) rotate(-3deg); }
+    100% { transform: translateY(0) rotate(0); opacity: 1; }
+  }
+  @keyframes belir { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .elmalar.dustu .elma svg, .elmalar.dustu .elma span { animation: none; }
+    .elmalar.bekle .elma svg, .elmalar.bekle .elma span { transform: none; opacity: 1; }
+  }
+
+  /* Tema ve son */
+  .tema { padding: clamp(4rem, 10vw, 7rem) 0; text-align: center; }
+  .tema blockquote { margin: 0 auto; max-width: 22ch; font: italic 400 clamp(1.75rem, 4.2vw, 2.75rem)/1.25 "Alegreya", Georgia, serif; }
+  .tema p { max-width: 40em; margin: 1.5rem auto 0; color: var(--soluk); }
+  .alt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    padding: 2rem 16px 3rem;
+    border-top: 1px solid rgba(214, 178, 110, 0.35);
+    font: 500 0.9375rem/1.5 "Alegreya Sans", system-ui, sans-serif;
+    color: var(--soluk);
+  }
+  .imza { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem 1rem; margin: 0; }
+  .imza .kapibara { width: 40px; height: 40px; border-radius: 50%; }
+  .imza .canva { height: 24px; width: auto; }
+
+  @media (max-width: 640px) {
+    .kisi-liste { grid-template-columns: 1fr 1fr; gap: 2.5rem 1rem; }
+    .kisi h3 { font-size: 1.25rem; }
+    .kisi p { font-size: 0.9375rem; }
+    .sahneler { padding: 12px 34px; background-position: left 12px top 0, right 12px top 0, 0 0; background-size: 10px 22px, 10px 22px, auto; }
+    .sahne { padding: 12px 12px 20px; }
+    .sahne + .sahne { margin-top: 12px; }
+    .sahne::before { display: none; }
+    .anlati { grid-template-columns: 1fr; margin-top: 1rem; }
+    .sira { font-size: 2.5rem; margin-bottom: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="kapak">
+  <div class="kemer">
+    <div class="kemer-ic"><img src="img/sahne-01-900.webp" alt="Yemyeşil bir ülke: çınarlar, ahşap evler, ortada akan bir çeşme, uzakta saray" width="900" height="506"></div>
+    <svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg>
+  </div>
+  <h1>Mercan Kız</h1>
+  <p>On sahnelik resimli bir masal</p>
+</header>
+
+<main>
+  <section class="kisiler" aria-labelledby="kisiler-baslik">
+    <div class="sutun">
+      <h2 id="kisiler-baslik">Masalın kişileri</h2>
+      <ul class="kisi-liste">
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/sehzade.webp" alt="Mavi kaftanlı, kırmızı kuşaklı, elinde yay tutan şehzade" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Şehzade</h3>
+          <p>Padişahın yakışıklı ve yaramaz oğlu. Eğlence olsun diye yaşlı bir kadının testisini okla kırar; bedduaya uğrayınca hiç görmediği Mercan Kız’a âşık olur.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/yasli.webp" alt="Başörtülü, önlüklü, elinde testi tutan yaşlı kadın" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Yaşlı Kadın</h3>
+          <p>Testisi çeşmenin önünde okla kırılınca, oku atanı göremeden beddua eder.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/buyucu.webp" alt="Mor pelerinli, elinde asa ve anahtar taşıyan büyücü kadın" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Büyücü Kadın</h3>
+          <p>Mercan Kız’ı güllerle kaplı şatoda tutar, kapıyı anahtarla açar. Kaçanların peşine sihirli değneğiyle düşer.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/mercan.webp" alt="Kırmızı entarili, örgülü saçlı Mercan Kız" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Mercan Kız</h3>
+          <p>Şehzadeyle şatodan kaçar, sonra bir yıl kulübede bekler. Büyücü onu bülbüle çevirir; Kaf Dağı’ndaki çeşmenin suyunu içince yeniden insan olur.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/at.webp" alt="Eyerli, kır benekli at" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>At</h3>
+          <p>Şehzadeyle Mercan Kız şatodan bu atla kaçar.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/hukumdar.webp" alt="Sarıklı, altın işlemeli kaftanlı genç hükümdar" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Genç Hükümdar</h3>
+          <p>Babası ölünce tahta çıkan şehzade. Bülbülün Mercan Kız olduğunu rüyasında görür ve bilginlerin gösterdiği yoldan Kaf Dağı’na gider.</p>
+        </li>
+        <li class="kisi">
+          <div class="kemer"><div class="kemer-ic"><img src="img/ejderha.webp" alt="Yeşil pullu, kanatlı ejderha" loading="lazy"></div><svg class="kemer-cizgi" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 130V52C0 30 22 26 38 14C44 9 48 4 50 0C52 4 56 9 62 14C78 26 100 30 100 52V130Z"/></svg></div>
+          <h3>Ejderha</h3>
+          <p>Kaf Dağı’ndaki çeşmenin başında durur. Hükümdar iyi niyetle seslenip derdini anlatınca çeşmeden çekilir.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="masal" aria-labelledby="masal-baslik">
+    <div class="sutun">
+      <h2 id="masal-baslik">Film şeridi</h2>
+      <ol class="sahneler">
+        <li class="sahne" data-no="Kare 1">
+          <img src="img/sahne-01-900.webp" srcset="img/sahne-01-900.webp 900w, img/sahne-01-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Yemyeşil ülke, gürül gürül akan çeşmeler, uzakta saray" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">1</span><p>Bir varmış, bir yokmuş; evvel zaman içinde, kalbur saman içinde, yemyeşil ve çeşmeleri gürül gürül akan güzel bir ülke varmış.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 2">
+          <img src="img/sahne-02-900.webp" srcset="img/sahne-02-900.webp 900w, img/sahne-02-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Çınarın ardında ok atan şehzade; çeşmenin önünde kırılan testi ve yaşlı kadın" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">2</span><p>Padişahın oğlu çok yakışıklı, bir o kadar da yaramazdı. Bir gün eğlence olsun diye çınarın arkasına saklandı ve yaşlı bir kadının su testisini okla kırdı.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 3">
+          <img src="img/sahne-03-900.webp" srcset="img/sahne-03-900.webp 900w, img/sahne-03-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Kırık testisiyle yaşlı kadın; uzaktaki ağacın ardında düşünceli şehzade" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">3</span><p>Yaşlı kadın, oku atanı göremeden “Sen her kimsen, Mercan Kız’a âşık olasın!” diye beddua etti. Şehzade hiç görmediği Mercan Kız’a <span class="deyim">gönlünü kaptırdı</span>; <span class="deyim">bir musibet bin nasihatten yeğdir</span>.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 4">
+          <img src="img/sahne-04-900.webp" srcset="img/sahne-04-900.webp 900w, img/sahne-04-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Güllerle kaplı yüksek şato; çınarın ardında saklanan şehzade, kapıdaki büyücü kadın" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">4</span><p>Şehzade babasından izin alıp Mercan Kız’ı aramaya çıktı. Günlerce yol gittikten sonra güllerle kaplı yüksek bir şato buldu ve bir kadının anahtarla içeri girişini saklanarak izledi.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 5">
+          <img src="img/sahne-05-900.webp" srcset="img/sahne-05-900.webp 900w, img/sahne-05-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Pencereden anahtar bırakan Mercan Kız; aşağıda başını kaldırmış şehzade" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">5</span><p>Kadın gidince şehzade sesini değiştirip “Mercan Kız!” diye seslendi; Mercan Kız, büyücü geldi sanıp anahtarı bıraktı. Karşısında yakışıklı bir genç görünce ona âşık oldu ve onunla gitmeye razı oldu.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 6">
+          <img src="img/sahne-06-900.webp" srcset="img/sahne-06-900.webp 900w, img/sahne-06-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Atla kaçan çift; sihirli değnekle uçan büyücü; aralarında beliren büyük perde" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">6</span><p>Büyücü kadın sihirli değneğiyle peşlerine düşünce Mercan Kız sihirli suyu arkasına döktü ve aralarında büyük bir perde oluştu. Büyücü, “En az bir yıl kavuşamayasınız!” diye bağırıp geri döndü.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 7">
+          <img src="img/sahne-07-900.webp" srcset="img/sahne-07-900.webp 900w, img/sahne-07-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Ceviz ağacı altında vedalaşan çift; çalıların ardında kulübe, uzakta saray" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">7</span><p>Mercan Kız, kavuşmaları bozulmasın diye bir yıl boyunca bir kulübede beklemeyi seçti. Şehzade babasını kaybedip tahta çıktı ve yılın dolmasını <span class="deyim">dört gözle bekledi</span>.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 8">
+          <img src="img/sahne-08-900.webp" srcset="img/sahne-08-900.webp 900w, img/sahne-08-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Saray bahçesinde gül dalında bülbül; köşede içinde bülbül olan kafes" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">8</span><p>Yıl dolmadan üç gün önce büyücü, Mercan Kız’ı bülbüle çevirdi. Bülbül, sarayın gül bahçesinde <em>dertli dertli ötünce</em> yakalanıp kafese konuldu; hükümdar o gece bülbülün Mercan Kız olduğunu rüyasında gördü.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 9">
+          <img src="img/sahne-09-900.webp" srcset="img/sahne-09-900.webp 900w, img/sahne-09-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Kaf Dağı; çeşmeden uzaklaşan ejderha; bülbülü elinde tutan hükümdar" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">9</span><p>Bilginlerin yol göstermesiyle Kaf Dağı’ndaki çeşmeye giden hükümdar, ejderhaya iyi niyetle seslenip derdini anlattı. Ejderha çeşmenin başından çekildi; <span class="deyim">tatlı dil yılanı deliğinden çıkarır</span>. Bülbül suyu içer içmez yeniden Mercan Kız oldu.</p></div>
+        </li>
+        <li class="sahne" data-no="Kare 10">
+          <img src="img/sahne-10-900.webp" srcset="img/sahne-10-900.webp 900w, img/sahne-10-1600.webp 1600w" sizes="(max-width: 1120px) 100vw, 1088px" width="1600" height="900" alt="Şenlikli düğün; gökten düşen üç elma" loading="lazy">
+          <div class="anlati"><span class="sira" aria-hidden="true">10</span><p>Mercan Kız ile hükümdar kırk gün kırk gece süren bir düğünle evlendi. <span class="deyim">Sabreden derviş muradına ermiş.</span> Gökten üç elma düştü: biri okuyanın, biri dinleyenin, biri yazanın başına.</p></div>
+        </li>
+      </ol>
+
+      <ul class="elmalar bekle" aria-label="Gökten düşen üç elma">
+        <li class="elma"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M33 14c1-6 4-10 9-12" stroke="#6B4A2B" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34 13c6-8 17-8 22-4-5 7-15 9-22 4z" fill="#48B7A8"/><path d="M32 20c-6-5-17-6-24 1-8 9-7 26 1 38 6 9 14 12 23 8 9 4 17 1 23-8 8-12 9-29 1-38-7-7-18-6-24-1z" fill="#E0483B"/><path d="M17 30c-3 4-4 10-2 16" stroke="#F7B3A6" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/></svg><span>okuyanın</span></li>
+        <li class="elma"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M33 14c1-6 4-10 9-12" stroke="#6B4A2B" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34 13c6-8 17-8 22-4-5 7-15 9-22 4z" fill="#48B7A8"/><path d="M32 20c-6-5-17-6-24 1-8 9-7 26 1 38 6 9 14 12 23 8 9 4 17 1 23-8 8-12 9-29 1-38-7-7-18-6-24-1z" fill="#E0483B"/><path d="M17 30c-3 4-4 10-2 16" stroke="#F7B3A6" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/></svg><span>dinleyenin</span></li>
+        <li class="elma"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M33 14c1-6 4-10 9-12" stroke="#6B4A2B" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34 13c6-8 17-8 22-4-5 7-15 9-22 4z" fill="#48B7A8"/><path d="M32 20c-6-5-17-6-24 1-8 9-7 26 1 38 6 9 14 12 23 8 9 4 17 1 23-8 8-12 9-29 1-38-7-7-18-6-24-1z" fill="#E0483B"/><path d="M17 30c-3 4-4 10-2 16" stroke="#F7B3A6" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/></svg><span>yazanın</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="tema" aria-label="Ana tema">
+    <div class="sutun">
+      <blockquote>Sabır ve iyi niyet, güçten daha çok iş görür.</blockquote>
+      <p>Şehzade başta okunu eğlence için kullanıyor, sonunda ejderhayı nazik bir konuşmayla çeşmeden uzaklaştırıyor. Altı çizili sözler deyim ve atasözü, italik yazılar mecaz.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="alt">
+  <p class="imza">
+    <img class="kapibara" src="img/kapibara.png" alt="Kapibara logosu" width="40" height="40">
+    <span>tarafından</span>
+    <img class="canva" src="img/canva.png" alt="Canva" width="106" height="34">
+    <span>ile oluşturuldu</span>
+  </p>
+</footer>
+
+<script>
+  // Elmalar, masalın sonu görününce düşer. JS yoksa ya da gözlemci yoksa baştan yerlerinde durur.
+  (function () {
+    var elmalar = document.querySelector('.elmalar');
+    if (!('IntersectionObserver' in window)) { elmalar.classList.remove('bekle'); return; }
+    new IntersectionObserver(function (girdiler, gozcu) {
+      if (!girdiler[0].isIntersecting) return;
+      elmalar.classList.replace('bekle', 'dustu');
+      gozcu.disconnect();
+    }, { threshold: 0.9 }).observe(elmalar);
+  })();
+</script>
+</body>
+</html>

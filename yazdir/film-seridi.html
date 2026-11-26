@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Mercan Kız – Film şeridi</title>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,800;1,400;1,800&family=Alegreya+Sans:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* A4 dikey, sayfa başına iki kare; renkler 2. sitedekiyle aynı */
+  @page { size: A4; margin: 10mm; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font: 400 11.5pt/1.55 "Alegreya", Georgia, serif; color: #F3EAD8; }
+  .serit {
+    --delik: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='30'%3E%3Crect y='5' width='14' height='20' rx='3' fill='%23F3EAD8'/%3E%3C/svg%3E");
+    height: 277mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5mm 15mm;
+    border-radius: 3mm;
+    background:
+      var(--delik) left 5mm top 0 / 4.2mm 9mm repeat-y,
+      var(--delik) right 5mm top 0 / 4.2mm 9mm repeat-y,
+      #080D26;
+    break-after: page;
+  }
+  .serit:last-child { break-after: auto; }
+  .kare { position: relative; margin: 0; padding: 5mm 5mm 6mm; background: #111B41; border-radius: 1mm; break-inside: avoid; }
+  .kenar { position: absolute; top: 5mm; left: -5.5mm; writing-mode: vertical-rl; font: 500 7pt/1 "Alegreya Sans", sans-serif; color: #D6B26E; }
+  .kare img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0.6mm; }
+  figcaption { display: grid; grid-template-columns: 12mm 1fr; margin-top: 4mm; }
+  .sira { font: italic 800 24pt/0.95 "Alegreya", Georgia, serif; color: #F06B5B; }
+  figcaption p { margin: 0; }
+  strong { font-weight: 400; text-decoration: underline 1.2pt #F06B5B; text-underline-offset: 0.2em; }
+  em { color: #F7D9A3; }
+</style>
+</head>
+<body>
+  <section class="serit">
+    <figure class="kare">
+      <span class="kenar">Kare 1</span>
+      <img src="img/sahne-01.jpg" alt="Yemyeşil ülke, gürül gürül akan çeşmeler, uzakta saray">
+      <figcaption><span class="sira">1</span><p>Bir varmış, bir yokmuş; evvel zaman içinde, kalbur saman içinde, yemyeşil ve çeşmeleri gürül gürül akan güzel bir ülke varmış.</p></figcaption>
+    </figure>
+    <figure class="kare">
+      <span class="kenar">Kare 2</span>
+      <img src="img/sahne-02.jpg" alt="Çınarın ardında ok atan şehzade; çeşmenin önünde kırılan testi ve yaşlı kadın">
+      <figcaption><span class="sira">2</span><p>Padişahın oğlu çok yakışıklı, bir o kadar da yaramazdı. Bir gün eğlence olsun diye çınarın arkasına saklandı ve yaşlı bir kadının su testisini okla kırdı.</p></figcaption>
+    </figure>
+  </section>
+  <section class="serit">
+    <figure class="kare">
+      <span class="kenar">Kare 3</span>
+      <img src="img/sahne-03.jpg" alt="Kırık testisiyle yaşlı kadın; uzaktaki ağacın ardında düşünceli şehzade">
+      <figcaption><span class="sira">3</span><p>Yaşlı kadın, oku atanı göremeden “Sen her kimsen, Mercan Kız’a âşık olasın!” diye beddua etti. Şehzade hiç görmediği Mercan Kız’a <strong>gönlünü kaptırdı</strong>; <strong>bir musibet bin nasihatten yeğdir</strong>.</p></figcaption>
+    </figure>
+    <figure class="kare">
+      <span class="kenar">Kare 4</span>
+      <img src="img/sahne-04.jpg" alt="Güllerle kaplı yüksek şato; çınarın ardında saklanan şehzade, kapıdaki büyücü kadın">
+      <figcaption><span class="sira">4</span><p>Şehzade babasından izin alıp Mercan Kız’ı aramaya çıktı. Günlerce yol gittikten sonra güllerle kaplı yüksek bir şato buldu ve bir kadının anahtarla içeri girişini saklanarak izledi.</p></figcaption>
+    </figure>
+  </section>
+  <section class="serit">
+    <figure class="kare">
+      <span class="kenar">Kare 5</span>
+      <img src="img/sahne-05.jpg" alt="Pencereden anahtar bırakan Mercan Kız; aşağıda başını kaldırmış şehzade">
+      <figcaption><span class="sira">5</span><p>Kadın gidince şehzade sesini değiştirip “Mercan Kız!” diye seslendi; Mercan Kız, büyücü geldi sanıp anahtarı bıraktı. Karşısında yakışıklı bir genç görünce ona âşık oldu ve onunla gitmeye razı oldu.</p></figcaption>
+    </figure>
+    <figure class="kare">
+      <span class="kenar">Kare 6</span>
+      <img src="img/sahne-06.jpg" alt="Atla kaçan çift; sihirli değnekle uçan büyücü; aralarında beliren büyük perde">
+      <figcaption><span class="sira">6</span><p>Büyücü kadın sihirli değneğiyle peşlerine düşünce Mercan Kız sihirli suyu arkasına döktü ve aralarında büyük bir perde oluştu. Büyücü, “En az bir yıl kavuşamayasınız!” diye bağırıp geri döndü.</p></figcaption>
+    </figure>
+  </section>
+  <section class="serit">
+    <figure class="kare">
+      <span class="kenar">Kare 7</span>
+      <img src="img/sahne-07.jpg" alt="Ceviz ağacı altında vedalaşan çift; çalıların ardında kulübe, uzakta saray">
+      <figcaption><span class="sira">7</span><p>Mercan Kız, kavuşmaları bozulmasın diye bir yıl boyunca bir kulübede beklemeyi seçti. Şehzade babasını kaybedip tahta çıktı ve yılın dolmasını <strong>dört gözle bekledi</strong>.</p></figcaption>
+    </figure>
+    <figure class="kare">
+      <span class="kenar">Kare 8</span>
+      <img src="img/sahne-08.jpg" alt="Saray bahçesinde gül dalında bülbül; köşede içinde bülbül olan kafes">
+      <figcaption><span class="sira">8</span><p>Yıl dolmadan üç gün önce büyücü, Mercan Kız’ı bülbüle çevirdi. Bülbül, sarayın gül bahçesinde <em>dertli dertli ötünce</em> yakalanıp kafese konuldu; hükümdar o gece bülbülün Mercan Kız olduğunu rüyasında gördü.</p></figcaption>
+    </figure>
+  </section>
+  <section class="serit">
+    <figure class="kare">
+      <span class="kenar">Kare 9</span>
+      <img src="img/sahne-09.jpg" alt="Kaf Dağı; çeşmeden uzaklaşan ejderha; bülbülü elinde tutan hükümdar">
+      <figcaption><span class="sira">9</span><p>Bilginlerin yol göstermesiyle Kaf Dağı’ndaki çeşmeye giden hükümdar, ejderhaya iyi niyetle seslenip derdini anlattı. Ejderha çeşmenin başından çekildi; <strong>tatlı dil yılanı deliğinden çıkarır</strong>. Bülbül suyu içer içmez yeniden Mercan Kız oldu.</p></figcaption>
+    </figure>
+    <figure class="kare">
+      <span class="kenar">Kare 10</span>
+      <img src="img/sahne-10.jpg" alt="Şenlikli düğün; gökten düşen üç elma">
+      <figcaption><span class="sira">10</span><p>Mercan Kız ile hükümdar kırk gün kırk gece süren bir düğünle evlendi. <strong>Sabreden derviş muradına ermiş.</strong> Gökten üç elma düştü: biri okuyanın, biri dinleyenin, biri yazanın başına.</p></figcaption>
+    </figure>
+  </section>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercan Kız</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kahve: #6E3413;
+    --kahve-acik: #B98866;
+    --krem: #F3EBE0;
+    --kum: #ECE3CF;
+    --film: #221C18;
+    --kagit: #F7F0E0;
+    --yer-tutucu: #E6DAC3;
+    --murekkep: #2A1D14;
+    --soluk: #6B5A4B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--kahve);
+    color: var(--murekkep);
+    font: 400 1rem/1.65 "Lora", Georgia, serif;
+  }
+  img { display: block; max-width: 100%; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 3px solid #E9B36A; outline-offset: 3px; }
+
+  /* Başlık */
+  .kapak {
+    min-height: 62vh;
+    display: grid;
+    place-content: center;
+    gap: clamp(3rem, 10vh, 7rem);
+    padding: 6rem 16px 9rem;
+    text-align: center;
+    color: #fff;
+  }
+  .kapak h1 {
+    margin: 0;
+    font: 500 clamp(3.25rem, 10vw, 6.5rem)/1 "Lexend", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    animation: belir 1.2s ease-out both;
+  }
+  .imza {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    font: 400 0.875rem/1 "Lexend", system-ui, sans-serif;
+    animation: belir 1.2s 0.4s ease-out both;
+  }
+  .imza .kapibara { width: 48px; height: 48px; border-radius: 50%; }
+  .imza .canva { height: 24px; width: auto; }
+  @keyframes belir { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { .kapak h1, .imza { animation: none; } }
+
+  /* Karakterler */
+  .karakterler {
+    max-width: 960px;
+    margin: -5rem auto 0;
+    padding: clamp(1.5rem, 4vw, 2.75rem) clamp(16px, 4vw, 2.75rem) 3.5rem;
+    background: var(--krem);
+    border-radius: 22px 22px 0 0;
+  }
+  .karakterler > h2 {
+    margin: 0 0 0.5rem;
+    font: 800 clamp(2.25rem, 5vw, 3rem)/1.1 "Lexend", system-ui, sans-serif;
+    color: #000;
+  }
+  .karakter { margin-top: 4.5rem; }
+  .bant {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    grid-template-rows: 100%; /* sabit satır: büyük figür yukarı taşar */
+    gap: 0 1.5rem;
+    height: 190px;
+    padding: 0 1.5rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #7A3A15 0%, var(--kahve-acik) 62%, var(--krem) 100%);
+  }
+  .bant .buyuk { height: 250px; width: auto; max-width: none; align-self: end; justify-self: center; }
+  .bant .buyuk.genis { height: auto; width: 230px; }
+  .sag { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding-top: 1.1rem; }
+  .sag h3 {
+    margin: 0;
+    font: 500 clamp(1.5rem, 3.4vw, 2.1rem)/1.15 "Lexend", system-ui, sans-serif;
+    color: #fff;
+  }
+  .pozlar { display: flex; align-items: flex-end; gap: 0.9rem; }
+  .pozlar .kucuk { height: 122px; width: auto; }
+  .pozlar .kucuk.genis { height: 100px; }
+  .pozlar .yuz { height: 74px; width: auto; }
+  .karakter p { max-width: 62ch; margin: 1rem 0 0 calc(190px + 3rem); color: var(--murekkep); }
+
+  @media (max-width: 640px) {
+    .karakter { margin-top: 3.5rem; }
+    .bant { grid-template-columns: 104px 1fr; height: 150px; gap: 0 0.75rem; padding: 0 0.75rem; }
+    .bant .buyuk { height: 190px; }
+    .bant .buyuk.genis { height: auto; width: 124px; }
+    .pozlar { gap: 0.4rem; }
+    .pozlar .kucuk { display: none; }
+    .pozlar .yuz { height: 54px; }
+    .karakter p { margin-left: 0; }
+  }
+
+  /* Film şeridi: JS varsa dikey kaydırma şeridi yatay kaydırır; JS yoksa yatay kaydırılan liste */
+  .film { --kare: min(78vw, 760px, calc((100svh - 330px) * 1.7778)); background: var(--kum); }
+  .film-pencere { padding: clamp(3rem, 7vw, 5rem) 0; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .film-ust { width: 100%; max-width: 1200px; margin: 0 auto 1.75rem; padding: 0 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .film-ust h2 { margin: 0; font: 700 clamp(2.25rem, 5vw, 3rem)/1.1 "Lora", Georgia, serif; }
+  .sayac { font: 500 1rem/1 "Lexend", system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--soluk); }
+  .film-iz { display: flex; width: max-content; margin: 0; padding: 0 max(16px, calc(50vw - var(--kare) / 2)); list-style: none; }
+  .kare { width: var(--kare); flex: none; scroll-snap-align: center; }
+  .hucre { position: relative; padding: 30px 6px; background: var(--film); }
+  .kare:first-child .hucre { border-radius: 10px 0 0 10px; padding-left: 14px; }
+  .kare:last-child .hucre { border-radius: 0 10px 10px 0; padding-right: 14px; }
+  /* film delikleri */
+  .hucre::before, .hucre::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 10px;
+    background: repeating-linear-gradient(90deg, transparent 0 9px, var(--kagit) 9px 24px, transparent 24px 34px);
+  }
+  .hucre::before { top: 10px; }
+  .hucre::after { bottom: 10px; }
+  .cerceve { position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 16 / 9; background: #3a302a; }
+  .cerceve img { width: 100%; height: 100%; object-fit: cover; transition: filter 0.7s ease, transform 0.7s ease; }
+  .no {
+    position: absolute; top: 10px; left: 10px; z-index: 1;
+    min-width: 28px; height: 28px; padding: 0 8px; display: grid; place-items: center;
+    border-radius: 14px; background: rgba(34, 28, 24, 0.82); color: #fff;
+    font: 500 0.8125rem/1 "Lexend", system-ui, sans-serif;
+  }
+  .metin { max-width: 62ch; margin: 0; padding: 1.25rem 1.5rem 0; font-size: 1.0625rem; line-height: 1.65; transition: opacity 0.6s ease, transform 0.6s ease; }
+  .ilerleme { display: none; }
+
+  .film.canli .film-pencere { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 0; }
+  .film.canli .film-iz { will-change: transform; }
+  .film.canli .kare:not(.aktif) .cerceve img { filter: grayscale(0.6) sepia(0.3) brightness(0.62); }
+  .film.canli .kare.aktif .cerceve img { transform: scale(1.04); transition: filter 0.7s ease, transform 8s ease-out; }
+  .film.canli .kare:not(.aktif) .metin { opacity: 0.3; transform: translateY(8px); }
+  .film.canli .ilerleme { display: block; width: 100%; max-width: 1200px; margin: 1.75rem auto 0; padding: 0 16px; background: linear-gradient(rgba(34, 28, 24, 0.12), rgba(34, 28, 24, 0.12)) content-box; }
+  /* şerit kaydırmayla birebir hareket eder; kendiliğinden olan yakınlaşma ve solmalar kapanır */
+  @media (prefers-reduced-motion: reduce) {
+    .cerceve img, .metin, .film.canli .kare.aktif .cerceve img { transition: none; }
+    .film.canli .kare.aktif .cerceve img { transform: none; }
+  }
+  .ilerleme span { display: block; height: 3px; border-radius: 2px; background: var(--kahve); transform-origin: left; transform: scaleX(0); }
+
+  .film-son { background: var(--kum); }
+  .notlar { max-width: 1200px; margin: 0 auto; padding: 0 16px 5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 3rem; font: 400 0.875rem/1.6 "Lexend", system-ui, sans-serif; }
+  .notlar p { margin: 0; max-width: 60ch; }
+  .notlar p:last-child { max-width: 42ch; }
+</style>
+</head>
+<body>
+
+<header class="kapak">
+  <h1>Mercan Kız</h1>
+  <p class="imza">
+    <img class="kapibara" src="img/kapibara.png" alt="Kapibara logosu" width="48" height="48">
+    <span>tarafından</span>
+    <img class="canva" src="img/canva.png" alt="Canva" width="106" height="34">
+    <span>ile oluşturuldu</span>
+  </p>
+</header>
+
+<main>
+<section class="karakterler" aria-labelledby="karakterler-baslik">
+  <h2 id="karakterler-baslik">Karakterler</h2>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk" src="img/sehzade.webp" alt="Mavi kaftanlı, kırmızı kuşaklı, elinde yay tutan şehzade">
+      <div class="sag">
+        <h3>Şehzade</h3>
+        <div class="pozlar">
+          <img class="kucuk" src="img/sehzade-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/sehzade-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/sehzade-y2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/sehzade-y3.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Padişahın yakışıklı ve yaramaz oğlu. Eğlence olsun diye yaşlı bir kadının testisini okla kırar; bedduaya uğrayınca hiç görmediği Mercan Kız’a âşık olur.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk" src="img/buyucu.webp" alt="Mor pelerinli, elinde asa ve anahtar taşıyan büyücü kadın" loading="lazy">
+      <div class="sag">
+        <h3>Büyücü Kadın</h3>
+        <div class="pozlar">
+          <img class="kucuk" src="img/buyucu-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/buyucu-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/buyucu-y2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/buyucu-y3.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Mercan Kız’ı güllerle kaplı şatoda tutar, kapıyı anahtarla açar. Kaçanların peşine sihirli değneğiyle düşer.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk" src="img/mercan.webp" alt="Kırmızı entarili, örgülü saçlı Mercan Kız" loading="lazy">
+      <div class="sag">
+        <h3>Mercan Kız</h3>
+        <div class="pozlar">
+          <img class="kucuk" src="img/mercan-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/mercan-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/mercan-y2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/mercan-y3.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Şehzadeyle şatodan kaçar, sonra bir yıl kulübede bekler. Büyücü onu bülbüle çevirir; Kaf Dağı’ndaki çeşmenin suyunu içince yeniden insan olur.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk" src="img/yasli.webp" alt="Başörtülü, önlüklü, elinde testi tutan yaşlı kadın" loading="lazy">
+      <div class="sag">
+        <h3>Yaşlı Kadın</h3>
+        <div class="pozlar">
+          <img class="kucuk" src="img/yasli-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/yasli-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/yasli-y2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/yasli-y3.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Testisi çeşmenin önünde okla kırılınca, oku atanı göremeden beddua eder.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk" src="img/hukumdar.webp" alt="Sarıklı, altın işlemeli kaftanlı genç hükümdar" loading="lazy">
+      <div class="sag">
+        <h3>Genç Hükümdar</h3>
+        <div class="pozlar">
+          <img class="kucuk" src="img/hukumdar-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/hukumdar-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/hukumdar-y2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/hukumdar-y3.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Babası ölünce tahta çıkan şehzade. Bülbülün Mercan Kız olduğunu rüyasında görür ve bilginlerin gösterdiği yoldan Kaf Dağı’na gider.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk genis" src="img/ejderha.webp" alt="Yeşil pullu, kanatlı ejderha" loading="lazy">
+      <div class="sag">
+        <h3>Ejderha</h3>
+        <div class="pozlar">
+          <img class="kucuk genis" src="img/ejderha-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/ejderha-y1.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/ejderha-y2.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Kaf Dağı’ndaki çeşmenin başında durur. Hükümdar iyi niyetle seslenip derdini anlatınca çeşmeden çekilir.</p>
+  </article>
+
+  <article class="karakter">
+    <div class="bant">
+      <img class="buyuk genis" src="img/at.webp" alt="Eyerli, kır benekli at" loading="lazy">
+      <div class="sag">
+        <h3>At</h3>
+        <div class="pozlar">
+          <img class="kucuk genis" src="img/at-2.webp" alt="" loading="lazy">
+          <img class="yuz" src="img/at-y1.webp" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <p>Şehzadeyle Mercan Kız şatodan bu atla kaçar.</p>
+  </article>
+</section>
+
+<section class="film" aria-labelledby="film-baslik">
+  <div class="film-pencere">
+    <div class="film-ust">
+      <h2 id="film-baslik">Film şeridi</h2>
+      <span class="sayac" aria-hidden="true">1 / 10</span>
+    </div>
+    <ol class="film-iz">
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">1</span><img src="img/sahne-01-900.webp" srcset="img/sahne-01-900.webp 900w, img/sahne-01-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Yemyeşil ülke, gürül gürül akan çeşmeler, uzakta saray"></div></div>
+        <p class="metin">Bir varmış, bir yokmuş; evvel zaman içinde, kalbur saman içinde, yemyeşil ve çeşmeleri gürül gürül akan güzel bir ülke varmış.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">2</span><img src="img/sahne-02-900.webp" srcset="img/sahne-02-900.webp 900w, img/sahne-02-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Çınarın ardında ok atan şehzade; çeşmenin önünde kırılan testi ve yaşlı kadın"></div></div>
+        <p class="metin">Padişahın oğlu çok yakışıklı, bir o kadar da yaramazdı. Bir gün eğlence olsun diye çınarın arkasına saklandı ve yaşlı bir kadının su testisini okla kırdı.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">3</span><img src="img/sahne-03-900.webp" srcset="img/sahne-03-900.webp 900w, img/sahne-03-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Kırık testisiyle yaşlı kadın; uzaktaki ağacın ardında düşünceli şehzade" loading="lazy"></div></div>
+        <p class="metin">Yaşlı kadın, oku atanı göremeden “Sen her kimsen, Mercan Kız’a âşık olasın!” diye beddua etti. Şehzade hiç görmediği Mercan Kız’a <strong>gönlünü kaptırdı</strong>; <strong>bir musibet bin nasihatten yeğdir</strong>.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">4</span><img src="img/sahne-04-900.webp" srcset="img/sahne-04-900.webp 900w, img/sahne-04-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Güllerle kaplı yüksek şato; çınarın ardında saklanan şehzade, kapıdaki büyücü kadın" loading="lazy"></div></div>
+        <p class="metin">Şehzade babasından izin alıp Mercan Kız’ı aramaya çıktı. Günlerce yol gittikten sonra güllerle kaplı yüksek bir şato buldu ve bir kadının anahtarla içeri girişini saklanarak izledi.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">5</span><img src="img/sahne-05-900.webp" srcset="img/sahne-05-900.webp 900w, img/sahne-05-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Pencereden anahtar bırakan Mercan Kız; aşağıda başını kaldırmış şehzade" loading="lazy"></div></div>
+        <p class="metin">Kadın gidince şehzade sesini değiştirip “Mercan Kız!” diye seslendi; Mercan Kız, büyücü geldi sanıp anahtarı bıraktı. Karşısında yakışıklı bir genç görünce ona âşık oldu ve onunla gitmeye razı oldu.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">6</span><img src="img/sahne-06-900.webp" srcset="img/sahne-06-900.webp 900w, img/sahne-06-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Atla kaçan çift; sihirli değnekle uçan büyücü; aralarında beliren büyük perde" loading="lazy"></div></div>
+        <p class="metin">Büyücü kadın sihirli değneğiyle peşlerine düşünce Mercan Kız sihirli suyu arkasına döktü ve aralarında büyük bir perde oluştu. Büyücü, “En az bir yıl kavuşamayasınız!” diye bağırıp geri döndü.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">7</span><img src="img/sahne-07-900.webp" srcset="img/sahne-07-900.webp 900w, img/sahne-07-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Ceviz ağacı altında vedalaşan çift; çalıların ardında kulübe, uzakta saray" loading="lazy"></div></div>
+        <p class="metin">Mercan Kız, kavuşmaları bozulmasın diye bir yıl boyunca bir kulübede beklemeyi seçti. Şehzade babasını kaybedip tahta çıktı ve yılın dolmasını <strong>dört gözle bekledi</strong>.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">8</span><img src="img/sahne-08-900.webp" srcset="img/sahne-08-900.webp 900w, img/sahne-08-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Saray bahçesinde gül dalında bülbül; köşede içinde bülbül olan kafes" loading="lazy"></div></div>
+        <p class="metin">Yıl dolmadan üç gün önce büyücü, Mercan Kız’ı bülbüle çevirdi. Bülbül, sarayın gül bahçesinde <em>dertli dertli ötünce</em> yakalanıp kafese konuldu; hükümdar o gece bülbülün Mercan Kız olduğunu rüyasında gördü.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">9</span><img src="img/sahne-09-900.webp" srcset="img/sahne-09-900.webp 900w, img/sahne-09-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Kaf Dağı; çeşmeden uzaklaşan ejderha; bülbülü elinde tutan hükümdar" loading="lazy"></div></div>
+        <p class="metin">Bilginlerin yol göstermesiyle Kaf Dağı’ndaki çeşmeye giden hükümdar, ejderhaya iyi niyetle seslenip derdini anlattı. Ejderha çeşmenin başından çekildi; <strong>tatlı dil yılanı deliğinden çıkarır</strong>. Bülbül suyu içer içmez yeniden Mercan Kız oldu.</p>
+      </li>
+      <li class="kare">
+        <div class="hucre"><div class="cerceve"><span class="no">10</span><img src="img/sahne-10-900.webp" srcset="img/sahne-10-900.webp 900w, img/sahne-10-1600.webp 1600w" sizes="(max-width: 980px) 78vw, 760px" width="900" height="506" alt="Şenlikli düğün; gökten düşen üç elma" loading="lazy"></div></div>
+        <p class="metin">Mercan Kız ile hükümdar kırk gün kırk gece süren bir düğünle evlendi. <strong>Sabreden derviş muradına ermiş.</strong> Gökten üç elma düştü: biri okuyanın, biri dinleyenin, biri yazanın başına.</p>
+      </li>
+    </ol>
+    <div class="ilerleme" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+<div class="film-son">
+  <div class="notlar">
+    <p><strong>Ana tema:</strong> Sabır ve iyi niyet, güçten daha çok iş görür. Şehzade başta okunu eğlence için kullanıyor, sonunda ejderhayı nazik bir konuşmayla çeşmeden uzaklaştırıyor.</p>
+    <p><strong>İşaretler:</strong> kalın yazı deyim ve atasözü, italik yazı mecaz.</p>
+  </div>
+</div>
+</main>
+
+<script>
+  (function () {
+    var film = document.querySelector('.film');
+    var iz = film.querySelector('.film-iz');
+    var kareler = film.querySelectorAll('.kare');
+    var sayac = film.querySelector('.sayac');
+    var cubuk = film.querySelector('.ilerleme span');
+    var mesafe = 0, aktif = -1;
+    film.classList.add('canli');
+
+    function olc() {
+      mesafe = Math.max(0, iz.scrollWidth - innerWidth);
+      film.style.height = (innerHeight + mesafe) + 'px'; // kaydırılan her piksel şeridi bir piksel kaydırır
+      ciz();
+    }
+    function ciz() {
+      var p = mesafe ? Math.min(1, Math.max(0, -film.getBoundingClientRect().top / mesafe)) : 0;
+      iz.style.transform = 'translate3d(' + (-p * mesafe) + 'px,0,0)';
+      cubuk.style.transform = 'scaleX(' + p + ')';
+      var i = Math.round(p * (kareler.length - 1));
+      if (i !== aktif) {
+        if (aktif >= 0) kareler[aktif].classList.remove('aktif');
+        kareler[i].classList.add('aktif');
+        sayac.textContent = (i + 1) + ' / ' + kareler.length;
+        aktif = i;
+      }
+    }
+    var bekliyor = false;
+    addEventListener('scroll', function () {
+      if (bekliyor) return;
+      bekliyor = true;
+      requestAnimationFrame(function () { bekliyor = false; ciz(); });
+    }, { passive: true });
+    addEventListener('resize', olc);
+    olc();
+  })();
+</script>
+</body>
+</html>
